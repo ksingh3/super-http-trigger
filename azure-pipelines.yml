@@ -17,21 +17,17 @@ steps:
    fi
   displayName: 'Build extensions'
 
-steps:
 - task: NodeTool@0
   displayName: 'Use Node version 10.14.1'
   inputs:
     versionSpec: 10.14.1
     
-
-steps:
 - task: Npm@1
   displayName: 'Install Application Dependencies'
   inputs:
     workingDir: '$(System.DefaultWorkingDirectory)'
     verbose: false
 
-steps:
 - task: Npm@1
   displayName: 'Run ''build'' script'
   inputs:
@@ -40,8 +36,6 @@ steps:
     verbose: false
     customCommand: 'run build --if-present'
 
-
-steps:
 - task: Npm@1
   displayName: 'Remove extraneous packages'
   inputs:
@@ -50,13 +44,11 @@ steps:
     verbose: false
     customCommand: 'prune --production'
 
-steps:
 - task: ArchiveFiles@2
   displayName: 'Archive files'
   inputs:
     rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
     includeRootFolder: false
 
-steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
